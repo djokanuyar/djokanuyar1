@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Okan Uyar — Resmi Planlama Portalı</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 580px; /* Linktree genişliği */
+            text-align: center;
+        }
+
+        /* Üst Logo Alanı */
+        .logo-wrapper {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto 10px auto;
+        }
+
+        .profile-video {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 50; /* Eğer video zaten yuvarlak tasarımsa böyle kalabilir, kare ise yuvarlamak için 50% yapabilirsin */
+        }
+
+        /* Kullanıcı Adı ve Bio */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .bio-text {
+            font-size: 15px;
+            color: #ffffff;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 90%;
+            margin: 0 auto 20px auto;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Sosyal Medya İkonu */
+        /* Sosyal Medya İkon Alanı */
+        .social-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            text-decoration: none;
+            font-size: 32px; /* İkon boyutu */
+            transition: transform 0.2s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .icon-instagram { color: #ffffff; }
+        .icon-whatsapp { color: #25D366; } /* Orijinal Kusursuz WhatsApp Yeşili */
+
+        /* Linktree Stili Buton Grubu */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* 🌟 YENİ NESİL HAREKETLİ NEON BUTONLAR */
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            background: #000000; /* İç arka plan tam siyah */
+            border-radius: 24px;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* Dönen Neon Çerçeve Efekti (Arka Katman) */
+        .link-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(115deg, #ff007f, #00f0ff, #ff007f, #00f0ff);
+            background-size: 400% 400%;
+            border-radius: 26px;
+            z-index: -1;
+            animation: neonGlow 6s linear infinite; /* Işığın dönme hızı */
+        }
+
+        /* Butonun Arkasındaki Neon Işıma Parlaması */
+        .link-btn::after {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(115deg, #ff007f, #00f0ff, #ff007f, #00f0ff);
+            background-size: 400% 400%;
+            border-radius: 26px;
+            z-index: -2;
+            filter: blur(8px); /* Parlama yumuşaklığı */
+            opacity: 0.4; /* Normalde hafif parlasın */
+            transition: opacity 0.3s ease;
+            animation: neonGlow 6s linear infinite;
+        }
+
+        /* Fareyle Üzerine Gelindiğinde Parlamayı Patlat */
+        .link-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .link-btn:hover::after {
+            opacity: 1; /* Dokununca/Gelementle tam parlasın */
+            filter: blur(14px);
+        }
+
+        /* Neon Işığın Dönme Animasyonu */
+        @keyframes neonGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Buton İçi Sol Alan (Resim ve Yazı) */
+        .btn-left {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .btn-thumb {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-right: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Buton Sağındaki Üç Nokta */
+        .btn-dots {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 18px;
+            font-weight: bold;
+            padding-right: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- YouTube Üzerinden Trafik Yemeyen Canlı Logo -->
+        <div class="logo-wrapper" style="position: relative; padding-bottom: 100%; height: 0; overflow: hidden; border-radius: 50%;">
+            <iframe src="https://www.youtube.com/embed/ZPs4AG8wFXA?autoplay=1&mute=1&loop=1&playlist=ZPs4AG8wFXA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; border: none;" 
+                    allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        </div>
+        
+        <h1>@Djokanuyar</h1>
+        
+        <div class="bio-text">
+            "18 YEARS OF EXPERIENCE"  Profesyonel DJ Hizmeti  Drone & sinematik video çekimi  Ses-Işık sistemleri kiralama & satış  Mekan tasarımı ve kurulum
+        </div>
+
+        <!-- Sosyal Medya Butonları -->
+      <div class="social-wrapper">
+            <a href="https://instagram.com/djokanuyar" class="social-link icon-instagram" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://wa.me/905455806526" class="social-link icon-whatsapp" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <!-- Butonlar Başlangıcı -->
+        <div class="links-wrapper">
+            
+            <!-- ⚠️ LINK KISIMLARINA KENDİ GOOGLE FORM LINKLERINIZI YAPIŞTIRIN -->
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScdn0kP77Euxke-KUwARR3HxkUurcdzcQGQvrY96D_tn8TTAA/viewform" class="link-btn" target="_blank">
+                <div class="btn-left">
+                    <img class="btn-thumb" src="dugun.jpg" alt="Düğün">
+                    <span class="btn-title">Düğün Daveti Planlamak İstiyorum</span>
+                </div>
+                <div class="btn-dots">•••</div>
+            </a>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCr6THAdDMBMI0zk23WIDRkQ7iKR02rdsvvxPfAuauneg3Dw/viewform" class="link-btn" target="_blank">
+                <div class="btn-left">
+                    <img class="btn-thumb" src="kina.jpg" alt="Kına">
+                    <span class="btn-title">Kına Gecesi Planlamak İstiyorum</span>
+                </div>
+                <div class="btn-dots">•••</div>
+            </a>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc9YPkInKdM4hRSwascIeHhwKf92kvYDjCYYAHjQLOMoIQzRA/viewform" class="link-btn" target="_blank">
+                <div class="btn-left">
+                    <img class="btn-thumb" src="nisan.jpg" alt="Nişan">
+                    <span class="btn-title">Nişan Daveti Planlamak İstiyorum</span>
+                </div>
+                <div class="btn-dots">•••</div>
+            </a>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScQwgg0t83tWy8DXLrcGA3ctLhCyYldhJSrO8yhZNUF9CBH2Q/viewform" class="link-btn" target="_blank">
+                <div class="btn-left">
+                    <img class="btn-thumb" src="mezuniyet.jpg" alt="Mezuniyet">
+                    <span class="btn-title">Mezuniyet Balosu Planlamak İstiyorum</span>
+                </div>
+                <div class="btn-dots">•••</div>
+            </a>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScj29ja6K_xsSOObhQ4e38GwqVaahq1tdC46N2EBQjWEVBZZA/viewform" class="link-btn" target="_blank">
+                <div class="btn-left">
+                    <img class="btn-thumb" src="sunnet.jpg" alt="Sünnet">
+                    <span class="btn-title">Sünnet Düğünü Planlamak İstiyorum</span>
+                </div>
+                <div class="btn-dots">•••</div>
+            </a>
+
+       </div>
+        <!-- Butonlar Bitişi -->
+
+        <!-- En Alttaki Telif Yazısı -->
+        <div class="footer">
+            © 2026 DJ OKAN UYAR. ALL RIGHTS RESERVED.
+        </div>
+    </div> <!-- Konteyner Kapanışı -->
+
+</body>
+</html>
